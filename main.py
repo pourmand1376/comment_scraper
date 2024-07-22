@@ -4,7 +4,7 @@ import os
 from title import get_titles
 WEBSITE_URL = "https://aprd.ir/"
 try:
-    GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
+    TOKEN = os.environ["TOKEN"]
 except KeyError:
     raise ValueError('Token not available')
 
@@ -71,8 +71,7 @@ def generate_graphql_query(authors):
     return full_query
 
 if __name__ == "__main__":
-    print(GITHUB_TOKEN)
-    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+    headers = {'Authorization': f'token {TOKEN}'}
     discussions = requests.post(url=GRAPHQL_URL, json={ 'query' :  discussions_query}, headers=headers)
     json_data = json.loads(discussions.text)
 
