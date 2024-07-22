@@ -101,11 +101,11 @@ if __name__ == "__main__":
         print(f"Comment URL: {comment['comment_url']}")
         print()
         html_content += f"""
-        <div>
-        <a href="{author_name_url['url']}">{name}</a>
-        در 
-        <a href="{comment['post_url']}">{title.split('|')[0]}</a>
-        </div>"""
+<div>
+<a href="{author_name_url['url']}">{name}</a>
+ در 
+<a href="{comment['post_url']}">{title.split('|')[0]}</a>
+</div>"""
 
     from pathlib import Path
     Path('comments.html').write_text(html_content)
