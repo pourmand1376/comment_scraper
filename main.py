@@ -87,7 +87,10 @@ if __name__ == "__main__":
     urls = [comment['post_url'] for comment in result]
     url_titles = get_titles(urls=urls)
 
-    html_content = ""
+    html_content = """
+<div class="latest-comments">
+<h3 class="comments-title">آخرین دیدگاه‌ها</h3>
+"""
     # Print the result
     for comment,(url, title) in zip(result, url_titles):
         author_login = comment['author']
@@ -101,11 +104,12 @@ if __name__ == "__main__":
         print(f"Comment URL: {comment['comment_url']}")
         print()
         html_content += f"""
-<div>
+<div class="comment-item">
 <a href="{author_name_url['url']}">{name}</a>
  در 
 <a href="{comment['post_url']}">{title.split('|')[0]}</a>
 </div>"""
 
+    html_content+= "</div>"
     from pathlib import Path
     Path('comments.html').write_text(html_content)
