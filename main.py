@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
     html_content = """
 <div class="latest-comments">
-<h3 class="comments-title">آخرین دیدگاه‌ها</h3>
+<div class="comments-title">آخرین دیدگاه‌ها</div>
 """
     # Print the result
     for comment,(url, title) in zip(result, url_titles):
