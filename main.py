@@ -2,6 +2,8 @@ import requests
 import json 
 import os
 from title import get_titles
+from pathlib import Path
+
 WEBSITE_URL = "https://aprd.ir/"
 try:
     TOKEN = os.environ["TOKEN"]
@@ -30,32 +32,7 @@ def extract_comments(data):
     return all_comments, list(authors)
 
 GRAPHQL_URL = 'https://api.github.com/graphql'
-discussions_query = """
-query {
-repository(owner: "pourmand1376", name: "hugo-papermod-farsi-template") {
-    discussions(first: 10) {
-      # type: DiscussionConnection
-      totalCount # Int!
-      nodes {
-        # type: Discussion
-          url
-          updatedAt
-          title
-          comments(last:2)
-          {
-            totalCount
-            nodes {
-              author {
-                login
-                url
-              }
-              url
-            }
-          }
-      }
-    }
-  }
-}"""
+discussions_query = Path('discussion.query').read_text()
 
 def generate_graphql_query(authors):
     query_parts = []

@@ -1,0 +1,25 @@
+query {
+repository(owner: "pourmand1376", name: "hugo-papermod-farsi-template") {
+    discussions(first: 6) {
+      # type: DiscussionConnection
+      totalCount # Int!
+      nodes {
+        # type: Discussion
+          url
+          updatedAt
+          title
+          comments(last:2)
+          {
+            totalCount
+            nodes {
+              author {
+                login
+                url
+              }
+              url
+            }
+          }
+      }
+    }
+  }
+}
